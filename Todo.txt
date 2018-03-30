@@ -1,0 +1,869 @@
+Todo:
+	Terrain Related
+		Terrain Test Program
+x			Draw rays 2 sided
+x			minimize / restore lose projection matrix
+			test running on surface
+x			use normals from factory
+x			figure out ray casts
+				fix wrapped ray casts
+		tmodel stuff
+x			Build Quadtree
+x			Debug Draw boxes
+			properly bound node heights
+		Threads still a little too jittery
+			optimize texturing stuff
+		maybe 2d scale factor for steep hill stretching problems
+x		Need a fast reliable terrain raycast
+		Collision Editor for static meshes
+		Collision routines that work with terrain + statics
+		Meter scale bsp?
+		Editor
+			fix hang with no sky stuff set
+			Shift mouse to increase decrease circle size (steal 3dcoat way)
+			raise / lower / smooth terrain
+x			gen whole area with fractals with various settings
+			entity placement?
+	Document and testprogram the outline color stuff
+	document best CBFG settings
+	Document character stuff: Frankensteining and Attachments
+	Resize / minimize crash in BspBuilder
+	Fix right clicking outside window causing mouselook toggle on all apps
+	Change bone collision for characters
+		Need a capsule based solution
+		Build visualization and adjustment into ColladaConvert
+		Need ray - capsule intersect stuff
+	LightHelper reduced updating for statics
+		Need to update if any dynamics are nearby
+		Need to update if switchable light switched on or off
+	BSP Stuff
+		Test meter unit scale
+		Collision / passing between multiple bsp zones
+
+Future Stuff
+	Would be cool to be able to bind multiple actions in the input library
+	Terrain Editor
+	Convex hull collision
+	Light export to max for replacing bsp parts with staticmesh for more detail
+	RenderTargety Surface Material
+		Could be a 2d UI screen or camera into scene or whateva
+		Set one of the user flags in the editor
+		Make a nearby entity with details (gump etc)
+		mapgrinder carve them into a list
+		interaction?  track clicks and mouse movement?
+	Maybe move some player character stuff into a library?
+	audio - would-be-nice stuff
+		need a way to adjust per instance falloff rates
+			for sounds (loud gunfire)
+		Need a way to add distortion to distant loud sounds
+		Need a way to muffle audio several rooms away
+		audiohelper random bark stuff
+			Randomized interval
+			directional or stereo?
+		audiohelper regional ambient
+			looping background noise
+			should maybe fade out when leave region?
+			Sustained audio code for layered effects
+				like several looping wind wavs
+	BSP Stuff
+		Need specular
+		In game bsp building for random maps etc?
+		details are sometimes being picked as splits
+			quake 3 does a pure tree first then filters in details
+		Figure out how to join up model style maps with optimized bsp maps
+		Figure out how to cull terrain inside maps
+		Figure out how to draw outside stuff through sky portals
+		experiment with baked light attenuation
+	Pathfinding
+		Implement FindPathRangeLOS()
+		Figure out how to have nodey pathing or navmeshy pathing coexist peacefully
+		Small path faces with no path points prevent shared edges
+			need a flag for nonpath to leave them out of pathing or osmething
+		look ahead a few path nodes like left4dead
+		Look for jump up / jump down / climb points for pathing
+	Rendering
+		Single draw cubemap shadowmaps via geomshader or whatever
+		lightmaps look very jagged and bandy with no cel at near darks, not sure when this happened
+			to fix, need to render to a float16 rendertarget and do gamma correction as a postprocess?
+	Gameplay
+		Swimming and all the complexity thereof (getting out of the water etc)
+		Figure out what to do when player overlaps 2 triggers at once
+		Thumbstick deadzone stuff?  re gama article
+		Flymode with and without collision
+		idea, store previous move iteration to record what happened to get start into solid
+	Collada / meshes
+		support texture atlas texturing in material lib
+		stuffkeeper / materiallib support for cube textures
+		
+Done:
+x	Bug with heights varying between visual and model
+x	Terrain File IO
+x		Save main Terrain
+x		Save texturing info
+x		Save shading info
+x		Load TModel
+x	Erosion: Fix bug causing pits, stuff should erode high to low
+x	remove fog color
+x	add number of threads for streaming numeric
+x	fix fog / far clip plane
+x		gui settable
+x		nearby cells to load gui
+x	Test non power of 2 sizes
+x	Sanity check tiling (can be wider than entire map)
+x	fix seam along wrapped edge
+x	pop camera above terrain
+x	shift messing up mouselook
+x	if terrain rebuilt, re-use texturing info
+x	save transition height
+x	save all grid values
+x	print coordinate information
+x	smoothing pass options
+x	Port enough to get halfway working
+x	save all numeric up down values in settings
+x	seed control
+x	fix / remove level matrix strangeness and frustum
+x	Make material stuff
+x		Texture atlas maker
+x		each atlas spot works with a height range
+x		UI to show and edit all this
+x	running down ramps is broken again
+x	Pathfinding test program
+x		need path block / unblock
+x		fix canreach test moving vertical upward
+x		gank unused pathing code (edge stuff)
+x	mouse wheel scroll speed thing in playersteering
+x	Proper Timestep related stuff in a lib
+x	Test small timesteps
+x	Test no update scenario (fixed no remainder)
+x		render delta can go negative
+x	Test Overflow
+x	gump examples in TestUI
+x	test different deltas + jumping
+x		feed them in manually to PMob and observe
+x	User prefs module from the xna branch?
+x		mouse invert
+x		turn speeds for keys / mouse / analog
+x	replace compile handlers with shared
+x	all delta time limits are broken
+x	keyboard move speed
+x	Need a UI / State sample
+x		consider menu page change instead of direct mod snesitityf
+x		invert x axis too?
+x		UserSettings in a library (util?)
+x		Menu Structure
+x			Controls
+x				Sensitivity 0-10
+x				Y-Axis Normal or Inverted
+x				360 Gamepad or mouse
+x				if time wasd or esdf
+x			Video
+x				multisampling on/off
+x				windowed or fullscreen
+x			Exit
+x	Make a pathing testing program
+x		options for drawing:
+x			node polys on / off
+x			node connexions on / off
+x		light up paths
+x		draw limit of some sort
+x		make it apparent that clicks are needed in pick mode
+x		fix text
+x		Make a function that places boundbox on the ground
+x			at the specified point, but not poking in
+x			for slopey slopes
+x		PathGraph drop nodes too close together
+x		check for valid ground plane before moving along it
+x		ensure path mobile adjustments work (form UI)
+x		Assign stairplane in landed on ground in stairmove
+x		apply gravity when badfooting
+x	clear path data on changelevel
+x	profile that big map (material thrash)
+x	assert on zero deltatime where needed
+x	Jump Broken
+x	Rename libTest to ZoneTest
+x	Document particle system
+x		Howto do entity
+x		How to do gravity entity
+x	arrow keys to turn in all apps
+x	Stuck bug at 297 048 220 in bridge
+x	Make a basic physics module
+x		should have configurable variables
+x		basic acceleration, velocity etc
+x		test jump heights and variable framerates
+x		test speed to make sure constant in varying framerates
+x		fix gravity
+x		limit time factor from input if deltatime > max
+x		clean up PlayerSteering
+x			make sure key turning is ok
+x			make sure analog / stick stuff ok
+x			make sure invert axis works
+x			make sure right click to turn off works
+x		cam playerstart
+x		port input/playerstart/focus fixes to all apps
+x		esc/back to close apps?		
+x	Make an audio testing program
+x		play 3d sound at emitter location key
+x		play 2d sound (at camera basically)
+x		load available
+x		keys to cycle through sounds []
+x		print what is going on
+x			cam location + num sounds playing
+x			emitter location
+x			current sound
+x	Fix font 'P'
+x	Fix up map test program
+x		print hotkeys
+x		test with no characters / statics / levels
+x		Look for font files
+x		Look for statics
+x		Look for characters
+x		Fix fonts
+x		Fix Gumps
+x		Make a list of avail anims
+x			play first in list
+x			key to cycle through anims
+x			print current anim and time
+x		Key to toggle flight / ground run
+x		key to cycle through levels
+x			print level name
+x		Move to player start on changelevel
+x		Character lighting not picking up sun
+x		Solve mystery of the bbgun shadow
+x			could be stuff not freed on changelevel()?
+x		Fast move directions
+x	Fix up mesh test program
+x		key to cycle between characters
+x		key to cycle between anims on active character
+x		print some status info
+x		draw origin axis thing
+x		Get collision working
+x		Get Statics drawing
+x		get static collision working
+x			Distinguish between instances
+x			Take shortest distance if multiple collisions
+no				or show all collisions
+x		key to cycle statics
+x		key to random rotate current static
+x		fiddle with scales?
+x		Test with no characters
+x		Test with no statics
+x		Test with neither
+x	Align running mobiles to the ground plane to prevent hopping down slopes
+x	Collision Hull distance off a bit for some collisions (wall in deadline, retest)
+x	Adjustable physics parameters for mobiles (speed friction etc)
+x	Use taylor series for player movement
+x	need a shader compiling progress indicator of some sort
+x	LightHelper make fills lerp
+x		crossing from weak point to sun pops
+x	properly free outlinelookup resources
+x	Rendering
+x		investigate proper usage of static shared uniform etc
+x		Outliner write out a darkened material color instead of black
+x	audio
+x		loadallaudio()
+x		port all audio use in xna libs
+x			basicmodel
+x			audiohelper
+x				need a way to start on triggered
+x				need a way to stop looping stuff
+x		Investigate multimaterial names being all useless
+x		Test the static dae use of geometry name as mesh name for multiple materials per mesh			
+no		ColladaConvert nested anims and anim clips
+no		GetGeometryID in colladaconvert may need to change depending on exporter
+no			have it set now to what works for the static mesh I was trying
+no			test with the other collada exporter
+x	Statichelper coordinate system stuff
+x	Figure out something to prevent the huge time loss with new fonts
+x	maybe remove EffectVariableValues that are ignored instead of skipping them
+x		as a gamey type pass not a tool thing
+x	split up long alpha planes to fix alpha sorting
+x	warn if two sunlights
+x	check spotlight aiming
+x	check sunlight aiming
+x	check intermissionhelper coordinate system stuff
+x	check particle system aiming
+x	Mobile ModelOn usually reporting -1
+x		should be 0 when on the world model?
+x		should be -1 when in midair?
+x		test riding on
+x		test push into surface
+x		stair step onto model broken
+x	fully document all types of model movement
+x	Strange hitch in collision when jumping
+x		sometimes double jump
+x	Make sure static mesh coordinate system stuff ok
+x	Get 90 rotation out of character data
+x	could update bounds more often, doesn't need invertedbones
+x	timesincelastinvert needs a real delta time
+x		anim time is a timepoint in anim
+no	time to invert needs increment in blend
+x	need a routine to update the axial character box from bones
+x		consider getting rid of sphere
+x		need a better way to calc box, touch too much ram
+x	need to cast against big bound before going to bones
+x	Need to figure out where to store bounds
+x		right now duplicated in arch and character
+x	new invalidarg when minimizing in handleresize
+x	inverted bones for bone collision
+x		optionally do immediate
+x		optionally threaded as fast as possible
+x		optionally threaded every x time
+x	need proper oriented boxes for character bone boxes
+x		right now rotating the axials, causes thinning
+x	Get raycasting collision working properly
+x		routines to narrow down which mesh part hit
+x	Ignore material option when computing character bounds
+x	stripes in textures
+x		double light bar along bottom
+x		doesn't happen when run under renderdoc
+x		probably a pitch thing
+no		check mip levels too
+no		turn on mipping in shaders to test
+x	fix max adjust matrix being character instance transform
+x	Fix case where exporter spits out node within a node INCEPTION
+x		Think maybe a sub object that has pivot moved without
+x			reset xform
+x	2d stuff like gumpery (screenui)
+x	static meshes reversed along X
+x	character meshes flipped too
+x		coordinate system NIGHTMARE
+x	fonts
+x	Test program in /test for instance/arch
+x		test having two identical staticmeshes with differing material props
+notime	test refcounts with changelevels (make sure everything freed)
+x	need a way to save material settings in instances
+x		char
+x		static
+x	Bounds are broken
+x	Material name column keeps getting reset
+x	fix statics
+x		gen tangents busted
+x	Get rid of double naming stuff in collada
+x	option to skip dummy geometries
+x	Maybe a mesh / content manager type thing for instances of stuff?
+x		statics need just a transform per instance
+x		characters can share meshparts, skin, skeleton
+x			transform, mBones, bounds should be per instance
+x		materialname, materialid, move out of mesh
+x		character stuff broken:
+x			strip elements
+x			gen tangents
+x			frankenstein
+x			DMN rendering
+x			deleting mesh parts
+x			Match mat changes the wrong listview!
+x	f2 to rename mesh part
+no	weld normals option for frankenstein
+x	normalize weights after average
+x	fix average weight
+x	multiple dae load for character testing
+x	load/merge multiple game character parts
+x	frankenstein function to weld weights of boundaries
+x	ColladaConvert needs access to textures
+x	new input library for sharpdx
+x		game stuff info needed for keys and buttonses
+x		game stuff needed for axis movement
+x		game stuff for mice
+x		Should handle modifiers even for mouse buttons (shift/ctrl etc)
+x	put ShadowDepth renderstate into ignore text
+x	get shadows working on statichelper stuff
+x	investigate lightmap problems (was just cel, lm was fine)
+x	need a texture / shader manager that refs additional copies
+x		right now matlibs are reloading stuff for each matlib
+x	fix light binding to be on release & no repeat
+x	add velocity cap to quark ent
+x	fix idkeeper
+x	fix shadows
+x	fix dynamiclights
+x	update material things to ignore renderstate stuff
+x	rename quark cel flag
+x	max particle velocity parameter
+x	update libs quark addon with all the new entities
+x	gravityloc relative to position of emitter?
+x		entity hookup for absolute locations
+x	gravity squared falloff
+x	fix vis error (was a material error)
+x	fix tab order on all tool forms
+x	Change gravity pitch & yaw to gravity location
+x	color velocities way too twitchy
+x	fix the shaderlib and gamecontent builds
+x	Get premult alpha working properly for particles
+x		Need a way to fade them out
+x	Need a paste on the particle editor side
+x	Need to premultiply png alpha
+no	Implement sort priority for particles in same location
+x	move extra prims somewhere common
+x		utilize in particle edit so can see where going
+no	Support more than one sun?  Dakkon would not approve.
+no	Add num sun lights in the lighting process prints
+x	SharpDX Port
+x		test particles
+x		Get rid of surface related stuff on bspbuilder
+x		slash on beginning of textures
+x		cullmode in particles
+x		Need to free resources after build steps
+x		postprocess handle resize
+x		fix bounding prim draws
+x		Think about how to bake multiple lights into trilight
+x			ZoneEntity coordinate system fudgery will need testing (likely changed)
+x		Some sort of problem with vis (was zerod planes)
+x		put extra stuff in the new W's in vert structs
+x		compress vert formats more
+x			halfsies for normals and texcoords
+x			cook float4 colors down to Color
+x			cook animated lightmap indexes down
+x		compress vert formats more
+x			halfsies for normals and texcoords
+x			cook float4 colors down to Color
+x			cook animated lightmap indexes down Color to Int4 / Half4 on 9_3
+x			fix texture alignment
+x				test in all quadrants
+x				test negative and positive values on all
+x			get rid of redundant empty drawcalls
+x			writearray / readarray functionality
+x			Make animated lightmap vert format less fat
+x			Something really goofy with alphas
+x				the noticable one is being drawn severl times
+x			Alpha winding backwards
+x			Get all build numbers identical as possible to XNA
+x			zoning takes awhile because rendering
+x			check all cross products
+x			debug draw, make sure plane facing correct
+x			Get drawing working
+x			zone materials not generating properly
+x			indoormesh drawcalls all empty
+x			x axis is backwards in map geometry (I think)
+x			Need to match up textures in build to matlib
+x			mapgrinder... vast changes needed
+x		SM2 Alpha bug (all 8 Blends must be set)
+x		POINTTEXTURES for collada stuff
+x		use immutables where smart
+x		pathlib
+later		fix debug draw routines
+x		Think about the concept of stuff set per shader
+x			might need to be set once a frame or just once overall
+x		Get all shaders compiling
+x			valid levels are 5_0, 4_1, 4_0, 4_0_level_9_3
+x			fix tex calls to tex.Sample with standardized set of samplers
+x			do something about the cel lookup texture, no 1d tex for 9_3
+notyet		figure out what to do with the shared parameters (groups?)
+x			move all states into HLSL and the technique just picks
+x			use sv_pos in post
+x			2D
+x			static
+x			character
+x			bsp
+x			post
+x			figure out how to precompile and store, compile time getting painful
+x		nuke junx.fx
+x		rename and move stuff into official spots
+x		for later
+x			check skel (what's this do again?)
+x			draw axis
+x			bounding functionality
+x			Skeleton editor
+x			cel tweak form
+x		anim lib file io
+x		get cooked meshes saving and loading
+x			static
+x			skinned
+x		load anim dae
+x		investigate halfsies and ints for bones and such
+x			might have to go 2 ways for 9_3
+x		anim grid functionality (delete etc)
+x		anim playback timescale and pause
+x		get collada skinned meshes loading
+x		get animation stuff working
+x		handle feeding bones into the new materials
+x		mouse input
+x		gamepad input
+x		need to wire up keys or something for directional light change in collada
+x		merge matlib button
+x		when mat deleted, clone mat still set
+x		load mat lib cel table gone
+x		Get basic materials working
+x		new material editor gui
+x		Get a basic mesh drawing
+x			pix doesn't work :(, get nvidia nsight working
+x				problem was actually POSITION instead of SV_POSITION
+x			problem is with shader params, use effect framework
+
+x		fix material id writes for statics and characters (all same id)
+x		test reach and sm2
+x			sm2 works but reach is too much of a bother now
+x		Test particles
+x			what to do with the depth/mat/norm phase? (write if alpha > 0.25)
+x		Split mutlitarget into 3 passes, the alphas won't work otherwise (asspain)
+x			regular old color pass
+x			shadows
+x			depth, normal, material pass.  Don't set alpha blending
+x		Need a better outline technique
+x			check for differences in material id
+x				if no differences in material, depth thresh should increase
+x			check for differences in normal
+x				this could be done first and early out?
+x			check for differences in depth
+x				want to avoid edge on polygon blackness
+x		Need tooltips for some of the buttons on materialform
+x		Make sure strip elements is still working with the HalfVector4 changes
+x		need a way to get rid of some redundant bones in the bone list
+x			skeleton editor with treeview
+x		problem with mapgrinder vert sizes
+x			optimize while fixing
+x		Try pixely texture mapping with Deadline's set of post processes
+x			LOOKS BADASS!
+x		Hitting strip elements twice is bad
+hv4		Try again to use integer indexes for bones
+x		Need a way to still have/animate attachment points, but not upload them to vshader
+x		Try to detect and warn if there is a messed up root node on a skinned mesh in ColladaConvert
+x	rename lightmap3 to world or bsp or something meaningful
+x	gank lightmap.fx
+x		fix up name changes with bsp compiler
+x		fix up collada stuff
+x	rename static to particle and ui or something like that (2D)
+x		dump the unused stuff
+x		fix up particle lib and editor with changes
+x	rename trilight to something implying for characters (Character)
+x	make static be for shading static meshes from collada
+x	rename shaders to indicate what they output (world pos world norm etc)
+x	move terrain shader into terrain lib
+no	Experiment with the difference between doing trilight in vs vs ps
+x	implement #ifdefs and fallbacks for 2,3,4 shader models
+x	#ifdef the different cel mechanisms
+x	Need a groglibsgame class that handles all the drudgery of getting a basic level running
+x		Handle elevators/bridges/bmodels (hit trigger, wait on elevator, get off at floor)
+x			game will handle this with custom entities
+x		Handle bmodel obstacles
+x			need to flag nodes as blocked when a bmodel is at that movestage
+x			game needs to just manually set them to blocked, too painful to compute
+x				do a test of this
+x	Libraryize the mouse cursor raycast to world position used by topdown stuff
+x		early out against models that aren't really valid collision targets like triggers?
+x		Need func_region functionality, where a shape defines where something can happen
+x			transfer func_region over to libs
+x			make a lib call to generate a random point within the region
+no				Optional radius/ bbox?
+x		button to hide/ignore shader parameters based on technique
+x			work with multiple selected
+x	QEntityMaker needs to either fix createNew trigger and func, or disable trigger and func
+x	QEntityMaker needs to enable point_ creation
+x	Try to figure out how to get Quark to place SOME entities by the base of the box
+x	Get QEntityMaker using base of the box placement for new entities (where needed)
+x	projectmaker needs to make design/maps
+x	Rendering
+x		ignore dangly force in level shaders
+x		directional shadows are wall climbing again
+x		Get shadow draw stuff into a library
+x		Lots of shadows
+x			Multipass hackery
+x		Lighthelpers don't properly lerp between point and directional
+x		gank shadow stuff out of lightmap
+x		do shadow backface culling
+x	Pathfinding
+x		load / save
+x		failure case: stepping over an edge onto a downward slope
+x		need the edge information from the navmesh based stuff
+x		answer is probably to combine point and navmesh
+x		Only use edge between if not on the same plane
+x		stairs connectivity
+x			detect stair edges within height constraint
+x			cast up, cast towards endpoint
+x		Test clip brush over stairs scenario (do clip brushes give navmesh polys?) (no)
+x	Need a ray segment classification subdivision thing
+x	Get rid of Toon.fx?  Kind of redundant
+x		move dangly shaders to trilight
+x	jump while riding on something should maybe keep the momentum
+x	Handy postprocess module
+x	dynamic lights
+x		fix darkens back side
+x		since ludum dare is a week away, just going with shader 3 easy ways
+x		loop with light location/atten/color in a vector4 texture
+x		need a light manager that handles setting params and such
+x			think about interaction with strongest light mechanisms in zone
+x		need to auto do-nothing for reach profile
+x		fullbuild needs a checkbox for doing lightmap3 materials		
+x	Experiment with outlining
+x	Need a material seam vertex weight welder tool
+x		integrate into colladaconvert?
+x			maybe multiselect 2 mesh parts and hit a button?
+x	GetMatrixForBone recursive function eating massive time in profiles
+x		seperate skeleton for all mesh parts so updating is hugely expensive
+x			need to make a single character share a skeleton (store at top level)
+x			fix IO
+x			fix that bone index to -1 nonsense
+x	get rid of planetype in zoneplane
+x	fix fullbuild flymode
+x	Fix ramps needing to hit stair code (new code fixes except for very top)
+x	Lighthelper sky trace might benefit from new raytrace (better plane detection)
+x		investigate null face in min&mal level (was just a door)
+x	Need to integrate the intersection stuff into mobile
+x	Think about the problem with needing to update playersteering pos
+x		maybe get rid of playersteering dependency?
+x		forced to pass in a pos to update?
+x	Fix flymode falling and make faster in bsptest
+x	unify collision interface, donut reuse params like -1 for model
+x		share some of the guts if possible, lots of duplicated code
+x	organize all the debug functions
+x		make one specific to rays and one specific to movement
+x	Move collision stuff in zone into zone collision
+x		organize into regions
+x	Find the face hit in traces
+x	comment input on anglesumthing
+x	change leaf clip back to using leaf instead of index
+x	make sure all plane reflections are using plane functions
+x	Unify ray/sphere/box
+x	Fix the jittery standing on models problem
+x	Intersection method to juggle in a loop till pos in empty
+x	the model on code sometimes will leave a player standing in midair
+x	look for spots where LengthSquared may be misused
+x	collisions still need an expensive intersection solver
+x	Possible that model collisions are checking distance incorrectly (see sphere)
+x	if find a started inside case on world, return it to the handlers
+x	change all collision handling to resolve world model first, then moving models
+x	Fix very small model movements causing a fall-into
+x	get rid of basicmodel hack
+x	Fix busted IntersectLeafSides_r
+x		fix bsptest ray to work with models
+x		replace with a plane shifting box collider
+x		implement the faked oriented stuff for rotating models
+x		heavily test rotating models
+x			ride on merry-go-round type model
+x			spinning bar to knock player around
+x			flipping on x to knock up in the air
+x			smash into wall situation
+x	BasicModelHelper rotating stuff
+x		store movement "stages" in individual entities
+x		store the first targeted by the model
+x		store the next targeted by the first etc
+x		need a way to determine when one stage ends and another begins
+x		put target key in door/plat entities
+x		get rid of movement stuff in door/plat entitites
+x		make stage interval default to 1000
+x		make roate_to_target default to false
+x		make move_axis default to -90 0 0
+x		make sound_forward default to forward
+x		make sound_backward default to back
+x		figure out what entity values to use
+x			axis of rotation
+x			rotate to angle
+x			rotate this amount per second?
+x		figure out the states
+x			basic open / closed
+x			spinning on or off
+x		types of moving models to support
+x			spin on an axis
+x			move then rotate like a platform that dumps people off at the top
+x			moving and spinning like the spinning blade traps in D&D online
+no	trigger trace needs to figure out if the trace passed through or is still inside
+x	Fix up bsptest with collision and pathing debugging stuff
+x		get doors working
+x		add a basic menu with control stuff
+x		make help page reflect if pad or keys are main
+x		Draw pathing info
+x		draw path node standing on as text
+x		Do test pathing from point to point
+x		fix fly mode
+x		Collision Ray mode
+x	Pathing minimum area doesn't fully fix the problem
+x		need to find surfaces near obstacles
+x		need to check if an object of size x can reach the center and active edges
+x	Make sure plane is ground in findspotaroundposition
+x	Lightmap alignment bug
+x		get light explorer showing lit faces
+x		print all the relevant stats for the lit face
+no	need to use merged faces for rendering and nonmerged for pathing?
+x	lightexplorer
+x			print coordinates
+x		during lighting record
+x			face points for every sample by face
+no			which were in solid
+x			plane in use
+x		after lighting build all that into visible data
+x		use keys to cycle through faces
+x	gank old ai stuff in bsp libs
+x	Pathing stuff should throw out small nodes
+x	DebugFace stuff is maybe not sufficient for pathing
+x		draw faces per node in bsptest to investigate
+no		Need a set of faces that are clipped to and stored in the leaf
+x		Need a per leaf set of walky faces
+notyet	Ideally they would be chopped at certain intervals to get a regular size
+x	do an overload of indoormesh draw to take a vispoint not camerapos for testing
+x	fix horrible string hacks in material parameters
+rid		fix or just get rid of mirrors
+x		need a way to have some parameters not be set by the material
+x			shrink texup texdown
+x			make button for unhide
+x			do an ignore button
+x		store effectparameters somewhere instead of doing fx.Parameters?
+x		gui option to ignore shader parameters
+x		try to get rid of all direct fx value setting
+x		make levels auto hide some stuff based on mat type
+x		celltex size updown doesn't reflect planted value
+x		Eyepos needs updating
+x	raytrace in zonemobs instead of sphere
+x	Fix non convex leafs!
+x		do better brush checking in split
+x		fix brushlist checking so it isn't dumping files alot and such
+x		get rid of fixgfxleafs
+x		buildTree_r leaf checking needs a think
+x	Allow closing path connections to represent locked doors or obstacles
+x	MobileAI
+x		won't be able to do game specific decision making
+x		should mainly handle navigation
+x		should be able to tell it to navigate
+x		be able to interrupt it now and then
+x	LightHelper's sky raycast is broken near origin axii
+x	Fix rare raycast bug when casting to an axis
+x		fixed in lighting, see checkin notes
+x	Particles are always upside down by default (how am I just noticing this!?)
+x	Pathfinding breaks at some doors and ramps/stairs
+x	Triggers from multiple "players" get really messed up
+x	Fix shadowing problems in tools
+x	Pathfinding integrated with build tools
+delay	some navmesh pieces are underneath solid but transparent bits
+x		connectivity code is giving false positives
+x	Do shadowing for remaining shaders in use (fullbright etc)
+x	make guess textures grab first cube for sky by default
+x	Turn lift and door into basic model helper, add secret door support
+x		Do sounds from entity
+x	make doorhelper and lifthelper for bspzone
+x		axis of movement in entity
+x		amount of movement in entity
+x		travel time in entity
+x		audio to play on open/close
+x		Copy any entity stuff into libs quark addon
+ok	test / fix particle alpha sorting
+x	stop the multi stage build if one step goes wrong
+no	slerp character lighting change
+x	multiply the 1 and 2 light colors as well in lighthelper
+x	Options for stripping vert elements such as vert colors in colladaconvert
+x	Make right click to turn in tools only work if app has focus
+no	remove "save zone" and just make it always save
+x	Make QEntityMaker add angles and pickup as a create option
+x	statichelper orientation from entity
+x	Emissive save and portal load doesn't extension the file gump
+x	Do sunlight in the non vis apply lights
+x	could speed up sunlight by checking if any sky faces are in vis
+x	libs entity file needs sunlight
+x	Need a sunlight system
+x		comes through sky faces
+x		parameters from a sunlight entity
+x	Animation blending
+x	Make animated lights work properly with statics and characters
+x	Build map as a model option
+x	Check stride on vertex color indexing, some exporters it is 4, some 3
+x	fix column widths on anim form
+x	get rid of all the foreaching for a single item, use linq
+x		general code cleanup of collada tool
+x	better mesh part naming
+x	material guess
+x	visible all
+x	fix slow hunt for next key time in subanim
+x	Do an anim time readout on screen in colladaconvert
+x	Make matrix io in skin use a io function
+x	see if lerpvalue in subanimation is ever really needed (should match times)
+x	fix gettimesforbone, setkeys subanimation bonename hack
+x	get rid of bind key
+x	Get Kinect mocap working
+x		Map Skeleton
+x		Capture Data
+x		Save / load
+x		Don't allow delete on the kinect bone map
+x		chop time off the front and end
+x		pause with switching between anims for working on poses
+no		do avateering style retargeting with decomposition
+no		fix busted bind pose in colladaconvert
+x		fix mesh chunks using entire vertex buffer?
+x			can't all share the same due to normal differences
+no	Find out if quark can reload config files without restarting
+x	Make specular and toon stuff use new functions
+x	Make bones or biped proper choices with correct behavior
+x	tool for creating entity types for quark and game
+x		Path to entity file
+x		Display existing entities
+x		expand all nodes?
+x		Add and remove fields from entities
+x			build EntityKVP bindinglists for every entity at parse
+x			On selected, just set the grid to bind to the right one
+x			on save, use the entitykvps to save back to the file
+x		rename entities
+x		hotkeys for delete and rename
+x		auto create form
+x		auto delete form
+x		auto rename form
+x		organize code
+x	fix ludum dare hack in StaticHelper
+x	invert doesn't work for mice
+x	fix reach vs hidef problems, indexes in fileutil etc
+x	nuke colladaconvert content project
+x	lib the load all meshes func from ludum25
+x	controls menu with sensitivity and reverse up/down
+x	test intermission cams
+x	Quick static mesh lib for pickups and such
+x		automagically grab nearest light or lights from zone and update mats
+x	gamestate library
+x	Add nav callback to menulib for playing sounds
+x	menu library
+x		add("New game"), add("Load Game"), etc...
+x		linkto("Options", "OptionsScreen");
+x		add frame behind options
+x		add highlight circle to show where highlight is
+x		test keyboard, might not work
+x		navigate on timer expire
+x	Particles sorting with world alphas
+x	Game Jammer app
+x		save window pos
+x		save texbox values
+x		Copy updated assets to game assets dir
+x		copy updated quark files to quark
+x			update level
+x				checkbox for zone, zonedraw, rest
+ny	fix color or _color for lights
+x	test colors in particle cutpaste
+x	Propagate new quark changes to libs and coldvoid
+x	get particle editor defaults to a good default for groglibs level
+x		increase granularity of gravity strength
+x	cut and paste from particle editor to quark
+x		CTRL-c on listview
+x	make update entities resave zone
+x	Make UI edit copy control names to clipboard on button
+x	Make UI edit auto pick from avail fonts
+x		show a list somehow
+x			make list save position
+x				make sure being hidden doesn't break it
+x			anchor for resize
+x	figure out a good audio scale value
+x	test triggered audio entities
+x	Add targetname for particles, activated for triggers
+x	test triggered particle entities
+x	Audio library
+x		Audio entities in quark
+x	Gank q2 crap in entities
+x	Get rid of spawnflags in entities, use specific values
+x	Particles from entities
+x		fix cell and bOn bools
+x	update entities confirmation text, tell to zone
+x	update ui for shape and shapesize when changing emitters
+x	update emitter when shape and shapesize change
+x	particle system
+x		emitters of various shapes
+x		velocity and gravity
+x		fire and forget effects
+x		constant spewers
+x		don't do duration, just on / off
+x		fix progress overflow issues
+x		cellshade
+x	particle editor
+x		make min max chase
+x		gravity strength
+x		grey out maxparticles when unchangeable
+x		ListView
+x			Delete
+x			Turn on / off
+x			Set controls to selected value
+x			update selected when controls change
+x			allow no selection for creation parameters
+x			Change texture
+no	Need a way to set cellshade by default in quark addon
+x	Test multiple triggers (light switch + switch sound)
+x	multiple model collidables
